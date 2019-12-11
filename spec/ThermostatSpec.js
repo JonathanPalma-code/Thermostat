@@ -28,4 +28,25 @@ describe('Thermostat',function(){
     };
     expect(thermostat.decrease()).toEqual("The minimum temperature is exceeded");
   });
+
+  it('expect the maximum temperature to be 25 degrees',function() {
+    var i;
+    for(i=20; i<thermostat.MAX_TEMPERATURE; i++){
+      thermostat.increase();
+    };
+    expect(thermostat.increase()).toEqual("The maximum temperature is exceeded")
+  });
+
+  it('expect the maximum temperature to be 32 degrees when the power saving mode is off',function() {
+    var i;
+    for(i=20; i<32; i++){
+      thermostat.increase();
+    };
+    expect(thermostat.increase()).toEqual("The maximum temperature is exceeded")
+  });
+
+  it('expect the power saving mode is off',function() {
+    thermostat.powerMode();
+    expect(thermostat.MAX_TEMPERATURE).toEqual(32)
+  });
 });

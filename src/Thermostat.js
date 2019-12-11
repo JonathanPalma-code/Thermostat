@@ -3,6 +3,7 @@
 function Thermostat(){
   this.temperature = 20;
   this.MIN_TEMPERATURE = 10;
+  this.MAX_TEMPERATURE = 25;
 };
 
 Thermostat.prototype.currentTemperature = function(){
@@ -10,7 +11,12 @@ Thermostat.prototype.currentTemperature = function(){
 };
 
 Thermostat.prototype.increase = function(){
-  return this.temperature++;
+  if(this.temperature >= this.MAX_TEMPERATURE){
+    return "The maximum temperature is exceeded"
+  }
+  else{
+    return this.temperature++;
+  }
 };
 
 Thermostat.prototype.decrease = function(){
@@ -20,4 +26,16 @@ Thermostat.prototype.decrease = function(){
   else{
     return this.temperature--;
   }
+};
+
+Thermostat.prototype.powerMode = function(){
+  if(this.MAX_TEMPERATURE == 25){
+    this.MAX_TEMPERATURE = 32;
+    return "Power saving mode is off";
+  }
+  else{
+    this.MAX_TEMPERATURE = 25;
+    return "Power saving mode is on";
+  }
+  
 };
