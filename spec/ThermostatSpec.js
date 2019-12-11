@@ -23,7 +23,7 @@ describe('Thermostat',function(){
 
   it('expect the minimum temperature to be 10 degrees',function() {
     var i;
-    for(i=20; i>10; i--){
+    for(i=20; i>thermostat.MIN_TEMPERATURE; i--){
       thermostat.decrease();
     };
     expect(thermostat.decrease()).toEqual("The minimum temperature is exceeded");
