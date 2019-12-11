@@ -13,5 +13,10 @@ Thermostat.prototype.increase = function(){
 };
 
 Thermostat.prototype.decrease = function(){
-  return this.temperature--;
+  if(this.temperature < 11){
+    return "The minimum temperature is exceeded";
+  }
+  else{
+    return this.temperature--;
+  }
 };
