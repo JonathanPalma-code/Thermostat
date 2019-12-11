@@ -49,4 +49,26 @@ describe('Thermostat',function(){
     thermostat.powerMode();
     expect(thermostat.MAX_TEMPERATURE).toEqual(32)
   });
+
+  it('expect to reset the temperature to 20 when calling the reset function', function(){
+    expect(thermostat.reset()).toEqual(20);
+  });
+
+  // DESCRIBEEEEE current usage.
+
+  it('gives a message due to the thermostat current energy usage', function(){
+    var i;
+    for(i=0;i<=3;i++){
+      thermostat.decrease();
+    }
+    expect(thermostat.currentUsage()).toEqual("Low-usage");
+  })
+
+  it('gives a message due to the thermostat current energy usage', function(){
+    var i;
+    for(i=0;i<=3;i++){
+      thermostat.decrease();
+    }
+    expect(thermostat.currentUsage()).toEqual("Low-usage");
+  })
 });

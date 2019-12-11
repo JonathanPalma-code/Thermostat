@@ -39,3 +39,19 @@ Thermostat.prototype.powerMode = function(){
   }
   
 };
+
+Thermostat.prototype.reset = function(){
+  return this.temperature = 20;
+};
+
+Thermostat.prototype.currentUsage = function(){
+  if(this.temperature < 18){
+    return "Low-usage";
+  }
+  if(this.temperature >= 18 && this.temperature < 25){
+    return "Medium-usage";
+  }
+  else {
+    return "High-Usage";
+  };
+};
