@@ -37,7 +37,9 @@ describe('Thermostat',function(){
     for(i=20; i>thermostat.MIN_TEMPERATURE; i--){
       thermostat.decrease();
     };
-    expect(thermostat.decrease()).toEqual("The minimum temperature is exceeded");
+    expect(function (){ 
+      thermostat.decrease();
+    }).toThrowError("The minimum temperature is exceeded");
   });
 
   //Power saving mode

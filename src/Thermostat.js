@@ -37,7 +37,7 @@ Thermostat.prototype.increase = function(){
 
 Thermostat.prototype.decrease = function(){
   if(this.temperature <= this.MIN_TEMPERATURE){
-    return "The minimum temperature is exceeded";
+    throw new Error("The minimum temperature is exceeded");
   }
   else{
     return this.temperature -= 1;
@@ -67,4 +67,10 @@ Thermostat.prototype.currentUsage = function(){
   else {
     return "Medium-usage";
   };
+};
+
+Thermostat.prototype.switchPSM = function() {
+  if(this.powerSavingMode){
+    return "on";
+  } return "off";
 };
