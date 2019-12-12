@@ -35,54 +35,40 @@ describe('Thermostat',function(){
     expect(thermostat.isPowerSavingModeOn()).toBe(true);
   });
 
-  it('can switch PSM off',function() {
-    expect(thermostat.isPowerSavingMode()).toBe()
-  });
-  
-  describe('Power saving mode:',function() {
-  
-    it('when is on, the maximum temperature is 25 degrees',function() {
-      var i;
-      for(i=20; i<=thermostat.MAX_TEMPERATURE; i++){
-        thermostat.increase();
-      };
-      expect(thermostat.increase()).toEqual("The maximum temperature is exceeded")
-    });
-
-    it('when is off, the maximum temperature is 32 degrees',function() {
-      var i;
-      for(i=20; i<32; i++){
-        thermostat.increase();
-      };
-      expect(thermostat.increase()).toEqual("The maximum temperature is exceeded")
-    });
+  it('can switch PSM off', function() {
+    thermostat.switchPowerSavingModeOff();
+    expect(thermostat.isPowerSavingModeOn()).toBe(false);
   });
 
-  it('expect the power saving mode is off',function() {
-    thermostat.powerMode();
-    expect(thermostat.MAX_TEMPERATURE).toEqual(32)
+  it('can switch PSM back on', function(){
+    thermostat.switchPowerSavingModeOff();
+    expect(thermostat.isPowerSavingModeOn()).toBe(false);
+    thermostat.switchPowerSavingModeOn();
+    expect(thermostat.isPowerSavingModeOn()).toBe(true);
   });
 
   it('expect to reset the temperature to 20 when calling the reset function', function(){
     expect(thermostat.reset()).toEqual(20);
   });
 
-  // DESCRIBEEEEE current usage.
-
-  it('gives a message due to the thermostat current energy usage', function(){
-    var i;
-    for(i=0;i<=3;i++){
-      thermostat.decrease();
-    }
-    expect(thermostat.currentUsage()).toEqual("Low-usage");
-  });
-
-  it('gives a message due to the thermostat current energy usage', function(){
-    var i;
-    for(i=0;i<7;i++){
-      thermostat.increase();
-    }
-    console.log(thermostat.temperature)
-    expect(thermostat.currentUsage()).toEqual("High-usage");
+  describe('displaying usage levels', function(){
+    describe('When temperature is below 18 degrees', function(){
+      it('Low-usage', function(){
+        var i;
+        for(i=0;i<=3;i++){
+          thermostat.decrease();
+        }
+        expect(thermostat.currentUsage()).toEqual("Low-usage");
+      });
+    });
+    describe('When temperature is over 25 degrees', function(){
+      it('High-Usage', function(){
+        var i;
+        for(i=0;i<7;i++){
+          thermostat.increase();
+        }
+        expect(thermostat.currentUsage()).toEqual("High-usage");
+      });
+    });
   });
 });

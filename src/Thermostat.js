@@ -1,23 +1,32 @@
 'use strict';
 
 function Thermostat(){
-  this.temperature = 20;
+  this.DEFAULT_TEMPERATURE = 20;
+  this.temperature = this.DEFAULT_TEMPERATURE;
   this.MIN_TEMPERATURE = 10;
   this.powerSavingMode = true;
   this.MAX_TEMPERATURE_PSM_ON = 25;
   this.MAX_TEMPERATURE_PSM_OFF = 32;
+  this.MEDIUM_ENERGY_USAGE_LIMIT = 18;
 };
 
 Thermostat.prototype.currentTemperature = function(){
   return this.temperature;
 };
 
+Thermostat.prototype.isMaximumTemperature = function(){
+  if(this.powerSavingMode === false){
+    return this.temperature === this.MAX_TEMPERATURE_PSM_OFF;
+  }
+  return this.temperature === this.MAX_TEMPERATURE_PSM_ON;
+}
+
 Thermostat.prototype.increase = function(){
-  if(this.temperature >= (this.MAX_TEMPERATURE + 1)){
-    return "The maximum temperature is exceeded"
+  if(this.isMaximumTemperature()){
+    return;
   }
   else{
-    return this.temperature++;
+    return this.temperature += 1;
   }
 };
 
@@ -26,35 +35,31 @@ Thermostat.prototype.decrease = function(){
     return "The minimum temperature is exceeded";
   }
   else{
-    return this.temperature--;
+    return this.temperature -= 1;
   }
 };
 
-Thermostat.isPowerSavingModeOn = function() {
+Thermostat.prototype.isPowerSavingModeOn = function() {
+  return this.powerSavingMode === true;
+};
+
+Thermostat.prototype.switchPowerSavingModeOff = function(){
+  this.powerSavingMode = false;
+}
+
+Thermostat.prototype.switchPowerSavingModeOn = function(){
   this.powerSavingMode = true;
 };
 
-Thermostat.prototype.powerMode = function(){
-  if(this.MAX_TEMPERATURE == 25){
-    this.MAX_TEMPERATURE = 32;
-    return "Power saving mode is off";
-  }
-  else{
-    this.MAX_TEMPERATURE = 25;
-    return "Power saving mode is on";
-  }
-  
-};
-
 Thermostat.prototype.reset = function(){
-  return this.temperature = 20;
+  return this.temperature = this.DEFAULT_TEMPERATURE;
 };
 
 Thermostat.prototype.currentUsage = function(){
-  if(this.temperature < 18){
+  if(this.temperature < this.MEDIUM_ENERGY_USAGE_LIMIT){
     return "Low-usage";
   }
-  if(this.temperature >= 25){
+  else if(this.temperature >= this.MAX_TEMPERATURE_PSM_ON){
     return "High-usage";
   }
   else {
