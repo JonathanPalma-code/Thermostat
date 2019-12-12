@@ -66,9 +66,9 @@ describe('Thermostat',function(){
 
   it('gives a message due to the thermostat current energy usage', function(){
     var i;
-    for(i=0;i<=3;i++){
-      thermostat.decrease();
+    for(i=0;i>6;i++){
+      thermostat.increase();
     }
-    expect(thermostat.currentUsage()).toEqual("Low-usage");
+    expect(thermostat.currentUsage()).toEqual("High-usage");
   })
 });
