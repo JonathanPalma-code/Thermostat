@@ -17,12 +17,14 @@ describe('Thermostat',function(){
   });
 
   it('should raise an error when Max Temperature is exceeed', function(){
-    for(var i=20; i<=thermostat.maxTemperature(); i++){
+    for(var i=20; i<thermostat.maxTemperature(); i++){
       thermostat.increase();
     };
+
     expect(function (){ 
       thermostat.increase();
     }).toThrowError("The maximum temperature is exceeded");
+    
   });
 
   it('decreases temperature a degree', function(){
