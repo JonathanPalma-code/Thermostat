@@ -21,13 +21,18 @@ Thermostat.prototype.isMaximumTemperature = function(){
   return this.temperature === this.MAX_TEMPERATURE_PSM_ON;
 }
 
+Thermostat.prototype.maxTemperature = function(){
+  if(this.powerSavingMode){
+    return this.MAX_TEMPERATURE_PSM_ON;
+  }
+  return this.MAX_TEMPERATURE_PSM_OFF;
+}
+
 Thermostat.prototype.increase = function(){
   if(this.isMaximumTemperature()){
-    return;
+    throw new Error("The maximum temperature is exceeded");
   }
-  else{
-    return this.temperature += 1;
-  }
+  return this.temperature += 1;
 };
 
 Thermostat.prototype.decrease = function(){

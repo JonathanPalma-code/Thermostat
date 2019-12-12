@@ -16,6 +16,15 @@ describe('Thermostat',function(){
     expect(thermostat.currentTemperature()).toEqual(21);
   });
 
+  it('should raise an error when Max Temperature is exceeed', function(){
+    for(var i=20; i<=thermostat.maxTemperature(); i++){
+      thermostat.increase();
+    };
+    expect(function (){ 
+      thermostat.increase();
+    }).toThrowError("The maximum temperature is exceeded");
+  });
+
   it('decreases temperature a degree', function(){
     thermostat.decrease();
     expect(thermostat.currentTemperature()).toEqual(19);
@@ -45,7 +54,7 @@ describe('Thermostat',function(){
     expect(thermostat.isPowerSavingModeOn()).toBe(false);
     thermostat.switchPowerSavingMode();
     expect(thermostat.isPowerSavingModeOn()).toBe(true);
-  });
+  });8
 
   it('expect to reset the temperature to 20 when calling the reset function', function(){
     expect(thermostat.reset()).toEqual(20);
@@ -63,6 +72,7 @@ describe('Thermostat',function(){
     });
     describe('When temperature is over 25 degrees', function(){
       it('High-Usage', function(){
+        thermostat.switchPowerSavingMode();
         var i;
         for(i=0;i<7;i++){
           thermostat.increase();
