@@ -15,15 +15,21 @@
   <button id='reset'> reset </button>
   <button id='power_saving_mode'> Power Saving Mode </button>
 
+  <section>
+      <form id="select-city">
+        <input id="current-city" type="text" placeholder="Enter a city"></input>
+        <input type="submit"></input>
+      </form>
+  </section>
+
   <script
-  src="https://code.jquery.com/jquery-3.4.1.slim.js"
-  integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI="
-  crossorigin="anonymous"></script>
+  src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 
   <script src="src/Thermostat.js"></script>
   <script src="src/ThermostatDOM.js"></script>
 
-  <marquee><h3> 1st JavaScript Project <span id="Welcome"></span></h3></marquee>
-  
+  <div id="border">
+    <marquee><p><span id="current-temperature">20</span>&deg;C in <span id="city-name">London</span></p></marquee>
+  </div>
 </body>
 </html>

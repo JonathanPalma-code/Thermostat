@@ -10,6 +10,12 @@
   color: red;
 }
 
-h3 {
-  color: #7788EE;
+p {
+  color: white;
+}
+
+#border {
+  border-style: inset;
+  background-color: rgb(167, 193, 243);
+  border-radius: 12px;
 }
