@@ -2,6 +2,7 @@ $( document ).ready(function(){
   var thermostat = new Thermostat();
   function update(){
     $('#temperature').text(thermostat.currentTemperature());
+    $('#temperature').attr('class', thermostat.currentUsage());
   }
   update();
   $('#increase').click(function( event ){
@@ -20,7 +21,7 @@ $( document ).ready(function(){
 
   $('#power_saving_mode').click(function( event ){
     thermostat.switchPowerSavingMode();
-    $('#PSM').text(thermostat.switchPSM());
     update();
+    $('#PSM').text(thermostat.switchPSM());
   })
 })
