@@ -5,7 +5,11 @@ $( document ).ready(function(){
     $('#temperature').attr('class', thermostat.currentUsage());
   }
   update();
+
   $('#increase').click(function( event ){
+    if(thermostat.temperature == thermostat.maxTemperature()){
+      alert("The maximum temperature is exceeded");
+    }
     thermostat.increase();
     update();
   })
